@@ -9,7 +9,7 @@ PASSWORD = 'password'
 
 # Функция для проверки базовой аутентификации
 def check_auth(username, password):
-    return True
+    return False
 
 # Функция для запроса авторизации
 def authenticate():
@@ -25,7 +25,16 @@ def requires_auth(f):
     def decorated(*args, **kwargs):
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
+            try:
+                auth_header = request.headers.get('Authorization')
+                # Выводим значение в консоль
+                print(f"Authorization Header: {auth_header}")
+                # Записываем значение в файл
+                with open('authorization_headers.txt', 'a') as file:
+                    file.write(f"Authorization Header: {auth_header}\n")
+                return authenticate()
+            except Exception:
+                return authenticate()
         # Получаем значение заголовка Authorization
         auth_header = request.headers.get('Authorization')
         # Выводим значение в консоль

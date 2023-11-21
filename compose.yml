@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "443:443"
+    volumes:
+      - ./ssl:/app/ssl
