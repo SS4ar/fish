@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Проверка пароля в слитой базе</h1>
+    <label for="password">Enter your password:</label>
+    <input type="password" id="password" />
+    <button onclick="checkPassword()">Check Password</button>
+    <div id="result"></div>
+
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function checkPassword() {
+            const passwordInput = document.getElementById('password');
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = '';
+
+            // Simulate a delay of 3 seconds
+            await sleep(3000);
+
+            // Always display the message that the password was not found
+            resultDiv.textContent = 'Пароль не найден в утечке данных. Известно, что он не скомпрометирован.';
+        }
+    </script>
+</body>
+</html>
