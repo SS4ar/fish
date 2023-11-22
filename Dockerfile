@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --no-cache-dir -y flask, gunicorn
+RUN pip install --no-cache-dir flask gunicorn
 
 CMD [ "gunicorn","-c","conf.py","app:app" ]
